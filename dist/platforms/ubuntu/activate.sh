@@ -65,7 +65,14 @@ elif [[ -n "$UNITY_LICENSING_SERVER" ]]; then
   FLOATING_LICENSE=$(sed -n 2p <<< "$PARSEDFILE")
   FLOATING_LICENSE_TIMEOUT=$(sed -n 4p <<< "$PARSEDFILE")
 
-  echo "Acquired floating license: \"$FLOATING_LICENSE\" with timeout $FLOATING_LICENSE_TIMEOUT"
+  if [[ -z "$FLOATING_LICENSE" || -z "$FLOATING_LICENSE_TIMEOUT" ]]; then
+    echo "::error ::Failed to acquire floating license from Unity Licensing Server."
+    echo "Check the activation log below for more details."
+    cat license.txt
+  else
+    echo "Acquired floating license: \"$FLOATING_LICENSE\" with timeout $FLOATING_LICENSE_TIMEOUT"
+  fi
+
   # Store the exit code from the verify command
 else
   #
