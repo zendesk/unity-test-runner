@@ -352,6 +352,7 @@ class ImageEnvironmentFactory {
             { name: 'SCOPED_REGISTRY_URL', value: parameters.scopedRegistryUrl },
             { name: 'REGISTRY_SCOPES', value: parameters.registryScopes },
             { name: 'PRIVATE_REGISTRY_TOKEN', value: process.env.UPM_REGISTRY_TOKEN },
+            { name: 'PRIVATE_REGISTRY_USER', value: process.env.UPM_REGISTRY_USER },
             { name: 'GIT_PRIVATE_TOKEN', value: parameters.gitPrivateToken },
             { name: 'VERSION', value: parameters.buildVersion },
             { name: 'CUSTOM_PARAMETERS', value: parameters.customParameters },
@@ -1016,7 +1017,7 @@ const ResultsCheck = {
                 core.info(`Processing file ${filepath}...`);
                 try {
                     const content = fs.readFileSync(path_1.default.join(artifactsPath, filepath), 'utf8');
-                    if (!content.includes('<test-results') && !content.includes('<test-run')) {
+                    if (!content.includes('<test-run')) {
                         // noinspection ExceptionCaughtLocallyJS
                         throw new Error('File does not appear to be a NUnit XML file');
                     }

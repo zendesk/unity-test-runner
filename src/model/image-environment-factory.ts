@@ -41,6 +41,7 @@ class ImageEnvironmentFactory {
       { name: 'SCOPED_REGISTRY_URL', value: parameters.scopedRegistryUrl },
       { name: 'REGISTRY_SCOPES', value: parameters.registryScopes },
       { name: 'PRIVATE_REGISTRY_TOKEN', value: process.env.UPM_REGISTRY_TOKEN },
+      { name: 'PRIVATE_REGISTRY_USER', value: process.env.UPM_REGISTRY_USER },
       { name: 'GIT_PRIVATE_TOKEN', value: parameters.gitPrivateToken },
       { name: 'VERSION', value: parameters.buildVersion },
       { name: 'CUSTOM_PARAMETERS', value: parameters.customParameters },
